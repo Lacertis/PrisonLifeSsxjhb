@@ -1,0 +1,363 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+ 
+local Window = Library.CreateLib("Prison Hub | Made By ProEternalx1 |Contact Me If theres Problems", "Midnight")
+ 
+local Tab = Window:NewTab("Player")
+local Section = Tab:NewSection("local player")
+Section:NewLabel("Walkspeed")
+Section:NewSlider("Walkspeed", "Walkspeed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+ 
+Section:NewLabel("Jump Power")
+Section:NewSlider("JumpPower", "JumpPower", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+ 
+local Section = Tab:NewSection("Fly Script | E To Disable Flight!")
+Section:NewButton("Fly", "Fly Around", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/rFpi04KR"))()
+end)
+ 
+local Tab = Window:NewTab("Misc")
+ 
+local Section = Tab:NewSection("Admin | Gives Admin!")
+Section:NewButton("Get Admin!", "Get Yourself A Free Admin!", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/XTheMasterX/Scripts/Main/PrisonLife'),true))()
+end)
+ 
+ 
+local Section = Tab:NewSection("Noclip! | Reset To Stop Noclip!")
+Section:NewButton("noclip", "walk anywhere without getting blocked by a wall!", function()
+    local StealthMode = true -- If game has an anticheat that checks the logs
+ 
+local Indicator
+ 
+if not StealthMode then
+    local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+    print("NOCLIP: Press E to Activate")
+    Indicator = Instance.new("TextLabel", ScreenGui)
+    Indicator.AnchorPoint = Vector2.new(0, 1)
+    Indicator.Position = UDim2.new(0, 0, 1, 0)
+    Indicator.Size = UDim2.new(0, 200, 0, 50)
+    Indicator.BackgroundTransparency = 1
+    Indicator.TextScaled = true
+    Indicator.TextStrokeTransparency = 0
+    Indicator.TextColor3 = Color3.new(0, 0, 0)
+    Indicator.TextStrokeColor3 = Color3.new(1, 1, 1)
+    Indicator.Text = "Noclip: Enabled"
+end
+ 
+local noclip = false
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local mouse = player:GetMouse()
+ 
+mouse.KeyDown:Connect(function(key)
+    if key == "e" then
+        noclip = not noclip
+ 
+        if not StealthMode then
+            Indicator.Text = "Noclip: " .. (noclip and "Enabled" or "Disabled")
+        end
+    end
+end)
+ 
+while true do
+    player = game.Players.LocalPlayer
+    character = player.Character
+ 
+    if noclip then
+        for _, v in pairs(character:GetDescendants()) do
+            pcall(function()
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end)
+        end
+    end
+ 
+    game:GetService("RunService").Stepped:wait()
+end
+end)
+ 
+local Section = Tab:NewSection("Teleport! | Reset To Stop Noclip!")
+Section:NewButton("tptool", "walk anywhere without getting blocked by a wall!", function()
+    mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Equip to Click TP"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+ 
+local Tab = Window:NewTab("Weapons")
+local Section = Tab:NewSection("local weapons")
+Section:NewButton("Get All Weapons | Outdated", "Gets Every Weapons", function()
+    for i,v in pairs(Workspace.Prison_ITEMS.giver:GetChildren()) do
+        lol = Workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+        print(lol)
+        end
+        end)
+ 
+local Section = Tab:NewSection("Mod")
+ 
+Section:NewLabel("AK-47")
+ 
+Section:NewButton("MOD AK-47", "Mod Your AK-47!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("AK-47")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+Section:NewLabel("M9")
+ 
+Section:NewButton("MOD M9", "Mod Your M9!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("M9")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+Section:NewLabel("Remington 870")
+ 
+Section:NewButton("MOD Remington 870", "Mod Your Remington 870!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("Remington 870")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+local Tab = Window:NewTab("Updates!")
+ 
+local Section = Tab:NewSection("Update")
+ 
+Section:NewLabel("Added Admin Commands! | Click F9 To Open Script! | credits to the owners!")
+ 
+Section:NewLabel("Added Modded Guns! | It Will Mod You Gun Yeah")
+ 
+Section:NewLabel("Added Misc! | I Added Misc Cuz Yes")
+ 
+Section:NewLabel("Changed The Color Script! | I Changed The Color Because Pro")
+ 
+Section:NewLabel("Added Weapons! | I Added Weapons So Its Better")
+ 
+Section:NewLabel("Added Updates! | dont care im adding updates")
+ 
+Section:NewLabel("Added Credits! | dont care im adding credits also")
+ 
+local Tab = Window:NewTab("Credits!")
+ 
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+ 
+local Window = Library.CreateLib("Prison Hub | Made By ProEternalx1 |Contact Me If theres Problems", "Midnight")
+ 
+local Tab = Window:NewTab("Player")
+local Section = Tab:NewSection("local player")
+Section:NewLabel("Walkspeed")
+Section:NewSlider("Walkspeed", "Walkspeed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+ 
+Section:NewLabel("Jump Power")
+Section:NewSlider("JumpPower", "JumpPower", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+ 
+local Section = Tab:NewSection("Fly Script | E To Disable Flight!")
+Section:NewButton("Fly", "Fly Around", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/rFpi04KR"))()
+end)
+ 
+local Tab = Window:NewTab("Misc")
+ 
+local Section = Tab:NewSection("Admin | Gives Admin!")
+Section:NewButton("Get Admin!", "Get Yourself A Free Admin!", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/XTheMasterX/Scripts/Main/PrisonLife'),true))()
+end)
+ 
+ 
+local Section = Tab:NewSection("Noclip! | Reset To Stop Noclip!")
+Section:NewButton("noclip", "walk anywhere without getting blocked by a wall!", function()
+    local StealthMode = true -- If game has an anticheat that checks the logs
+ 
+local Indicator
+ 
+if not StealthMode then
+    local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+    print("NOCLIP: Press E to Activate")
+    Indicator = Instance.new("TextLabel", ScreenGui)
+    Indicator.AnchorPoint = Vector2.new(0, 1)
+    Indicator.Position = UDim2.new(0, 0, 1, 0)
+    Indicator.Size = UDim2.new(0, 200, 0, 50)
+    Indicator.BackgroundTransparency = 1
+    Indicator.TextScaled = true
+    Indicator.TextStrokeTransparency = 0
+    Indicator.TextColor3 = Color3.new(0, 0, 0)
+    Indicator.TextStrokeColor3 = Color3.new(1, 1, 1)
+    Indicator.Text = "Noclip: Enabled"
+end
+ 
+local noclip = false
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local mouse = player:GetMouse()
+ 
+mouse.KeyDown:Connect(function(key)
+    if key == "e" then
+        noclip = not noclip
+ 
+        if not StealthMode then
+            Indicator.Text = "Noclip: " .. (noclip and "Enabled" or "Disabled")
+        end
+    end
+end)
+ 
+while true do
+    player = game.Players.LocalPlayer
+    character = player.Character
+ 
+    if noclip then
+        for _, v in pairs(character:GetDescendants()) do
+            pcall(function()
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end)
+        end
+    end
+ 
+    game:GetService("RunService").Stepped:wait()
+end
+end)
+ 
+local Section = Tab:NewSection("Teleport! | Reset To Stop Noclip!")
+Section:NewButton("tptool", "walk anywhere without getting blocked by a wall!", function()
+    mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Equip to Click TP"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+ 
+local Tab = Window:NewTab("Weapons")
+local Section = Tab:NewSection("local weapons")
+Section:NewButton("Get All Weapons | New/Better Script Now!", "Gets Every Weapons", function()
+    for i,v in pairs(Workspace.Prison_ITEMS.giver:GetChildren()) do
+        lol = Workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+        print(lol)
+        end
+        end)
+ 
+local Section = Tab:NewSection("Mod")
+ 
+Section:NewLabel("AK-47")
+ 
+Section:NewButton("MOD AK-47", "Mod Your AK-47!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("AK-47")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+Section:NewLabel("M9")
+ 
+Section:NewButton("MOD M9", "Mod Your M9!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("M9")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+Section:NewLabel("Remington 870")
+ 
+Section:NewButton("MOD Remington 870", "Mod Your Remington 870!", function()
+    local player = game:GetService("Players").LocalPlayer
+local gun = player.Backpack:FindFirstChild("Remington 870")
+local sM = require(gun:FindFirstChild("GunStates"))
+sM["Damage"] = 40
+sM["MaxAmmo"] = 9999991
+sM["StoredAmmo"] = 9999991
+sM["FireRate"] = 0.05
+sM["AmmoPerClip"] = 9999991
+sM["Range"] = 5000
+sM["ReloadTime"] = 0.05
+sM["Bullets"] = 1
+sM["AutoFire"] = true
+end)
+ 
+local Tab = Window:NewTab("Updates!")
+ 
+local Section = Tab:NewSection("Update")
+ 
+Section:NewLabel("Added Admin Commands! | Click F9 To Open Script! | credits to the owners!")
+ 
+Section:NewLabel("Added Modded Guns! | It Will Mod You Gun Yeah")
+ 
+Section:NewLabel("Added Misc! | I Added Misc Cuz Yes")
+ 
+Section:NewLabel("Changed The Color Script! | I Changed The Color Because Pro")
+ 
+Section:NewLabel("Added Weapons! | I Added Weapons So Its Better")
+ 
+Section:NewLabel("Added Updates! | dont care im adding updates")
+ 
+Section:NewLabel("Added Credits! | dont care im adding credits also")
+ 
+local Tab = Window:NewTab("Credits!")
+ 
+local Section = Tab:NewSection("Credits")
+ 
+Section:NewLabel("Credits For The Owner Of Admin CMD")
